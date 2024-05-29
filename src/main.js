@@ -19,6 +19,7 @@ export default async (context) => {
         ttl: "10m",
       }
     );
+    context.log(JSON.stringify(context.req.body));
     at.addGrant({ roomJoin: true, room: roomName });
     return context.res.json({ token: await at.toJwt() });
   } catch ({ name, message }) {
