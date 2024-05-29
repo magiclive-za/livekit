@@ -22,6 +22,7 @@ export default async (context) => {
     at.addGrant({ roomJoin: true, room: roomName });
     context.log(context.req.body);
     context.log(context.req.body.roomName);
+    context.log(JSON.parse(context.req.body).roomName);
     return context.res.json({ ok: true, token: await at.toJwt() });
   } catch ({ name, message }) {
     return context.res.json(
