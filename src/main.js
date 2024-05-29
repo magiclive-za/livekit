@@ -19,9 +19,8 @@ export default async (context) => {
         ttl: "10m",
       }
     );
-    context.log(JSON.stringify(context.req.body));
     at.addGrant({ roomJoin: true, room: roomName });
-    return context.res.json({ token: await at.toJwt() });
+    return context.res.json({ ok: true, token: await at.toJwt() });
   } catch ({ name, message }) {
     return context.res.json(
       { ok: false, error: "An error has occurred", name, message },
