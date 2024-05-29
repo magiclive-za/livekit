@@ -1,15 +1,15 @@
 import { AccessToken } from "livekit-server-sdk";
 import { generateShortCode, throwIfMissing } from "./utils.js";
 
-export default async ({ res, req, log, error }) => {
+export default async (context) => {
   try {
     throwIfMissing(process.env, ["LIVEKIT_API_KEY", "LIVEKIT_API_SECRET"]);
     // if this room doesn't exist, it'll be automatically created when the first
     // client joins
-    const roomName = req.body.roomName;
+    const roomName = context.req.body.roomName;
     // identifier to be used for participant.
     // it's available as LocalParticipant.identity with livekit-client SDK
-    const participantName = req.body.participantName;
+    const participantName = context.req.body.participantName;
     const at = new AccessToken(
       process.env.LIVEKIT_API_KEY,
       process.env.LIVEKIT_API_SECRET,
