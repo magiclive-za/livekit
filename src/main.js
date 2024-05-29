@@ -20,9 +20,9 @@ export default async (context) => {
       }
     );
     at.addGrant({ roomJoin: true, room: roomName });
-    return res.json({ token: await at.toJwt() }, 200);
+    return context.res.json({ token: await at.toJwt() });
   } catch ({ name, message }) {
-    return res.json(
+    return context.res.json(
       { ok: false, error: "An error has occurred", name, message },
       500
     );
