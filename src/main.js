@@ -6,7 +6,7 @@ export default async (context) => {
     throwIfMissing(process.env, ["LIVEKIT_API_KEY", "LIVEKIT_API_SECRET"]);
     // Parse JSON body
     const body =
-      context.req.body instanceof String
+      typeof context.req.body === "string"
         ? JSON.parse(context.req.body)
         : { roomName: undefined, participantName: undefined };
     // if this room doesn't exist, it'll be automatically created when the first
